@@ -9,15 +9,28 @@ let package = Package(
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "AppModule",
-            targets: ["AppModule"]),
+            targets: ["AppModule"])
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "AppModule"),
-        .testTarget(
-            name: "AppModuleTests",
-            dependencies: ["AppModule"]),
+            name: "AppModule",
+            dependencies: [
+                .youTube
+            ]
+        ),
+        .target(
+            name: .youTube,
+            dependencies: []
+        )
     ]
 )
+
+extension String {
+    static let youTube = "YouTube"
+}
+
+extension Target.Dependency {
+    static let youTube = Self(stringLiteral: .youTube)
+}
