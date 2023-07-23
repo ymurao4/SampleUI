@@ -17,20 +17,32 @@ let package = Package(
         .target(
             name: "AppModule",
             dependencies: [
+                .appDelegate,
+                .repository,
                 .youTube
             ]
         ),
         .target(
+            name: .appDelegate
+        ),
+        .target(
+            name: .repository
+        ),
+        .target(
             name: .youTube,
-            dependencies: []
+            dependencies: [.repository]
         )
     ]
 )
 
 extension String {
+    static let appDelegate = "AppDelegate"
+    static let repository = "Repository"
     static let youTube = "YouTube"
 }
 
 extension Target.Dependency {
+    static let appDelegate = Self(stringLiteral: .appDelegate)
+    static let repository = Self(stringLiteral: .repository)
     static let youTube = Self(stringLiteral: .youTube)
 }
